@@ -2,11 +2,11 @@
 #include <iostream>
 
 void Symbole::Affiche() {
-   cout<<Etiquettes[ident];
+  cout<<endl;
+  cout<<Etiquettes[ident];
 }
 
 void Entier::Affiche() {
    Symbole::Affiche();
    cout<<"("<<valeur<<")";
 }
-
