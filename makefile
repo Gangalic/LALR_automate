@@ -1,11 +1,11 @@
-EXEC     = tpc-exec
-CC       = gcc
+EXEC     = analyserGL
+CC       = g++
 
-CFLAGS   = -std=gnu11 
+CFLAGS   = -std=c++11
 LDFLAGS  =
 
-SRC      = $(wildcard *.c)
-OBJ      = $(SRC:.c=.o)
+SRC      = $(wildcard *.cpp)
+OBJ      = $(SRC:.cpp=.o)
 
 all: $(EXEC)
 
@@ -21,4 +21,4 @@ clean:
 	@rm -rf *.o
 
 mrproper: clean
-@rm -rf $(EXEC)
+	@rm -rf $(EXEC)
