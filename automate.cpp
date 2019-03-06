@@ -1,8 +1,8 @@
 #include "automate.h"
 
 void Automate::decalage(Symbole * s, Etat * e){
-  pileSymboles.push_back(s);
-  pileEtats.push_back(e);
+  pileSymboles.push(s);
+  pileEtats.push(e);
   if(s->isTerminal()){
     lexer->Avancer();
   }
@@ -10,10 +10,10 @@ void Automate::decalage(Symbole * s, Etat * e){
 
 void Automate::reduction(int n, Symbole * s){
   for (int i=0; i<n; i++){
-    delete(pileEtats.back());
-    pileEtats.pop_back();
+    delete pileEtats.top();
+    pileEtats.pop();
   }
-  pileEtats.back()->transition(*this,s);
+  pileEtats.top()->transition(*this,s);
 }
 
 Symbole * Automate::depilerSymbole(){
@@ -23,14 +23,15 @@ Symbole * Automate::depilerSymbole(){
 }
 
 void Automate::empilerSymbole(Symbole * s){
-  pileSymboles.push_back(s);
+  pileSymboles.push(s);
 }
 
 void Automate::analyser(){
-  pileEtats.push_back(new Etat0("0"));
+  pileEtats.push(new Etat0("0"));
   bool temp = pileEtats.top()->transition(*this, lexer->Consulter());
   while(!temp){
     temp = pileEtats.top()->transition(*this, lexer->Consulter());
   }
   pileSymboles.top()->Affiche();
+  cout<<endl;
 }

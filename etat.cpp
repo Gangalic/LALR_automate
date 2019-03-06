@@ -50,7 +50,7 @@ bool Etat3::transition(Automate & automate, Symbole * s){
 			case MULT:
 			case CLOSEPAR:
 			case FIN:{
-				Entier * entier = (Entier*) automate.depile_symbole();
+				Entier * entier = (Entier*) automate.depilerSymbole();
 				int valeur = entier -> getValeur();
 				Expr * expr = new Expr(valeur);
 				delete entier;
@@ -115,9 +115,9 @@ bool Etat7::transition(Automate & automate, Symbole * s){
 		case PLUS:
 		case CLOSEPAR:
 		case FIN:
-			Expr * expr1 = (Expr*) automate.depile_symbole();
-			delete automate.depile_symbole();
-			Expr * expr2 = (Expr*) automate.depile_symbole();
+			Expr * expr1 = (Expr*) automate.depilerSymbole();
+			delete automate.depilerSymbole();
+			Expr * expr2 = (Expr*) automate.depilerSymbole();
 			int valeur = expr1 -> getValeur() + expr2 -> getValeur();
 			Expr * expr = new Expr(valeur);
 			delete expr1;
@@ -134,9 +134,9 @@ bool Etat8::transition(Automate & automate, Symbole * s){
 		case PLUS:
 		case CLOSEPAR:
 		case FIN:
-			Expr * expr1 = (Expr*) automate.depile_symbole();
-			delete automate.depile_symbole();
-			Expr * expr2 = (Expr*) automate.depile_symbole();
+			Expr * expr1 = (Expr*) automate.depilerSymbole();
+			delete automate.depilerSymbole();
+			Expr * expr2 = (Expr*) automate.depilerSymbole();
 			int valeur = expr1 -> getValeur() * expr2 -> getValeur();
 			Expr * expr = new Expr(valeur);
 			delete expr1;
@@ -153,9 +153,9 @@ bool Etat9::transition(Automate & automate, Symbole * s){
 		case PLUS:
 		case CLOSEPAR:
 		case FIN:
-			delete automate.depile_symbole();
-			Expr * expr = (Expr*) automate.depile_symbole();
-			delete automate.depile_symbole();
+			delete automate.depilerSymbole();
+			Expr * expr = (Expr*) automate.depilerSymbole();
+			delete automate.depilerSymbole();
 			automate.reduction(3, expr);
 			break;
 	}
